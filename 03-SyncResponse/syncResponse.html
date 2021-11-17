@@ -35,40 +35,52 @@
 
         button.addEventListener("click", function () {
             try {
+
+                //Receipt the content receipts from the syncRequest
                 var res = syncRequest(
                     "https://api.unsplash.com/photos/random/?client_id=gYYpa1DfTkJJbDbNzCmYg-ZPI3RHzODU2eP_yzZ46VE",
                     "GET"
                 );
+                //Parse to JSON the respond content
                 var data = JSON.parse(res);
                 console.log(data);
+                //Create an image element
                 const img = document.createElement("img");
+                //Set the src attribute to the image url
                 img.src = data.urls.regular;
+                //Append the image to the body
                 document.body.appendChild(img);
 
             } catch (e) {
+                //If there is an error, log it with append a p element to the body and show the error in the console
                 const p = document.createElement("p");
-                console.log(e.message);
+                console.error(e);
                 p.innerHTML = e.message;
                 p.style.color = "red";
                 document.body.appendChild(p);
             }
         });
     }
+    //Use the same situation of the get image
     const syncRequest = (url, method, body = null) => {
         var request = new XMLHttpRequest();
 
+        //Open the request with the method, url, and set false to indicate that it is not asynchronous request
         request.open(method, url, false);
         console.log(request);
+        //Send the request with body that in the case of GET is null
         request.send(body);
 
+        //Await the response and first check if the status is 200
         //Throw and erros if the request fails
         console.log(request);
         if (request.status !== 200) throw new Error(JSON.parse(request.responseText).errors[0]);
 
-        // Throw an error if the type was wrong
+        // Throw an error if the content type was wrong
         var type = request.getResponseHeader("Content-Type");
         if (!type.includes("json")) throw new Error("Wrong type");
 
+        //Finally if the request was successful return the response content
         return request.responseText;
     };
 </script>

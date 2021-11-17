@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Specifying the request</title>
+    <title>Retrieving the response</title>
 </head>
 
 <body>
@@ -35,6 +35,7 @@
 
         button.addEventListener("click", function () {
             try {
+                //Pass callback function to the get request
                 Get(AppendImg);
             } catch (e) {
                 const p = document.createElement("p");
@@ -46,6 +47,7 @@
         });
     }
 
+    //Function what will be called when the response is ready and then append the image to the body
     const AppendImg = (src) => {
 
         const img = document.createElement("img");
@@ -57,26 +59,33 @@
     const Get = (callback) => {
         var request = new XMLHttpRequest();
 
+        //open the request with the method and the url
         request.open("GET", "https://api.unsplash.com/photos/random/?client_id=gYYpa1DfTkJJbDbNzCmYg-ZPI3RHzODU2eP_yzZ46VE");
 
+        //Set the content type for the request
         request.setRequestHeader("content-type", "application/json");
 
         console.log(request);
 
+        //Add event listener to the request to listen for the response
         request.onreadystatechange = function () {
+            // When the ready state is 4 and the status is 200, proceess the response content
             if (request.readyState === 4) {
                 if (request.status === 200) {
 
-                    console.log(request.getAllResponseHeaders());
+                    console.log(request.getAllResponseHeaders()); //Log the response headers in the console
 
-                    console.log(request.responseText);
+                    console.log(request.responseText); //Log the response text in the console
 
+                    //Firs parse the response text to JSON
                     var data = JSON.parse(request.responseText);
 
                     console.log(data);
 
+                    //Then get the url of the image
                     let imgSrc = data.urls.regular;
 
+                    //Call the callback function with the image url to append the image to the body
                     callback(imgSrc);
                 } else {
                     console.log(request);
