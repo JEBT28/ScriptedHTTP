@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="button">Get the image</button>
+</body>
+<script>
+    if (window.XMLHttpRequest === undefined) {
+        window.XMLHttpRequest = function () {
+            try {
+                // Use the latest version of the ActiveX object if available
+                return new ActiveXObject("Msxml2.XMLHTTP.6.0");
+            }
+            catch (e1) {
+                try {
+                    // Otherwise fall back on an older version
+                    return new ActiveXObject("Msxml2.XMLHTTP.3.0");
+                }
+                catch (e2) {
+                    // Otherwise, throw an error
+                    throw new Error("XMLHttpRequest is not supported");
+                }
+            }
+        };
+    }
+    window.onload = function () {
+        const button = document.getElementById("button");
+
+        button.addEventListener("click", function () {
+            try {
+                var res = syncRequest(
+                    "https://api.unsplash.com/photos/random/?client_id=gYYpa1DfTkJJbDbNzCmYg-ZPI3RHzODU2eP_yzZ46VE",
+                    "GET"
+                );
+                var data = JSON.parse(res);
+                console.log(data);
+                const img = document.createElement("img");
+                img.src = data.urls.regular;
+                document.body.appendChild(img);
+
+            } catch (e) {
+                const p = document.createElement("p");
+                console.log(e.message);
+                p.innerHTML = e.message;
+                p.style.color = "red";
+                document.body.appendChild(p);
+            }
+        });
+    }
+    const syncRequest = (url, method, body = null) => {
+        var request = new XMLHttpRequest();
+
+        request.open(method, url, false);
+        console.log(request);
+        request.send(body);
+
+        //Throw and erros if the request fails
+        console.log(request);
+        if (request.status !== 200) throw new Error(JSON.parse(request.responseText).errors[0]);
+
+        // Throw an error if the type was wrong
+        var type = request.getResponseHeader("Content-Type");
+        if (!type.includes("json")) throw new Error("Wrong type");
+
+        return request.responseText;
+    };
+</script>
+
+</html>
