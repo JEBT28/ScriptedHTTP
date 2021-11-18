@@ -16,7 +16,6 @@ window.onload = function () {
     });
 }
 
-
 // Function used to load JSON data to the formulary
 const loadJSONDoc = (data)=>{
 // Receives the JSON data and process it
@@ -28,7 +27,6 @@ const loadJSONDoc = (data)=>{
     form["address"].value = data.address;
 
 }
-
 
 let form = document.getElementById("form");
 

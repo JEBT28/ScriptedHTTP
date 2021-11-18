@@ -17,3 +17,12 @@
 
 ## 4 -  Specifying the response 
  **Need a apache server to work**
+
+## 5 -  CORS 
+ **Need a apache server to work**
+
+## 6 -  JSONP 
+ **Need a apache server to work**
+
+## 7 -  Comet with server events 
+[See in live](https://chat-websocket-example.herokuapp.com/)
