@@ -1,19 +1,19 @@
-#Scripted HTTP 
+# Scripted HTTP 
 
-#Students:
+# Students:
 - Juan Esteban Baltierrez Tobon
 - Judit Hernandez Luna
 
-#List of examples 
+# List of examples 
 
-##1 -  Specifying the request 
-[See in live](https://juantobon.com/ScriptedHTTP/01-SpecifyingTheRequest/specifyingTheRequest.html)
+## 1 -  Specifying the request 
+[See in live](https://juantobon.tech/ScriptedHTTP/01-SpecifyingTheRequest/specifyingTheRequest.html)
 
-##2 -  Retrieving the response 
-[See in live](https://juantobon.com/ScriptedHTTP/02-RetrievingTheResponse/retrievingTheResponse.html)
+## 2 -  Retrieving the response 
+[See in live](https://juantobon.tech/ScriptedHTTP/02-RetrievingTheResponse/retrievingTheResponse.html)
 
-##3 -  Sync Response
-[See in live](https://juantobon.com/ScriptedHTTP/03-SyncResponse/syncResponse.html)
+## 3 -  Sync Response 
+[See in live](https://juantobon.tech/ScriptedHTTP/03-SyncResponse/syncResponse.html)
 
 ## 4 -  Specifying the response 
  **Need a apache server to work**
